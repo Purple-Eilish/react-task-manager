@@ -1,32 +1,47 @@
+import AddTask from "./components/add_task";
+import Navbar from "./components/navbar";
+import Tasks from "./components/tasks";
+
 function App() {
+  const siteProperties = {
+    title: "Task Manager",
+    author: "coode",
+  };
+
+  const addTaskHandler = (e) => {
+    e.preventDefault();
+    console.log("This is from parent component");
+  };
+
+  // tasks 
+  const tasks = [
+    {
+      title:"Project 1",
+      description:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur delectus atque in temporibus reiciendis eveniet qui culpa nam repellatab?",
+      date:"12/12/12",
+      completed: true,
+    },
+    {
+      title:"Project 2",
+      description:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur delectus atque in temporibus reiciendis eveniet qui culpa nam repellatab?",
+      date:"12/12/12",
+      completed: false,
+    },
+    {
+      title:"Project 3",
+      description:" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur delectus atque in temporibus reiciendis eveniet qui culpa nam repellatab?",
+      date:"12/12/12",
+      completed: false,
+    }
+  ]
+
   return (
     <div>
-      <nav>
-        <header>
-          <h2>Task Manager</h2>
-        </header>
-        <ul>
-          <li>created by: coode</li>
-        </ul>
-      </nav>
+      <Navbar siteProperties={siteProperties} />
       <div className="container">
         <div className="inner_container">
-          <form>
-            <h1>Add Task</h1>
-            <label htmlFor="title">
-              Title
-              <input type="text" id="title" />
-            </label>
-            <label htmlFor="date">
-              Date
-              <input type="date" id="date" />
-            </label>
-            <label htmlFor="content">
-              Content
-              <textarea id="content"></textarea>
-            </label>
-            <button type="submit">Add Task</button>
-          </form>
+          <AddTask onSubmit={addTaskHandler} />
+          <Tasks tasksData={tasks}/>
         </div>
       </div>
     </div>
