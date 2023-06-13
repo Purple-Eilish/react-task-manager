@@ -1,12 +1,17 @@
-export default function Navbar(props) {
-  const { siteProperties } = props;
+import { Link } from "react-router-dom";
+import CustomButton from "./customButton";
+
+export default function Navbar() {
   return (
     <nav>
       <header>
-        <h2>{siteProperties.title}</h2>
+        <h2>Task Manager</h2>
       </header>
       <ul>
-        <li>created by: {siteProperties.author}</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li><CustomButton/></li>
       </ul>
     </nav>
   );
