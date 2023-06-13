@@ -1,30 +1,25 @@
 import { useState } from "react";
-import AddTask from "./components/add_task";
+import AddTask from "./pages/addTask";
 import Navbar from "./components/navbar";
-import Tasks from "./components/tasks";
+import Tasks from "./pages/tasks";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  const siteProperties = {
-    title: "Task Manager",
-    author: "coode",
-  };
   const addTaskHandler = (formData) => {
     console.log(formData);
     setTasks([...tasks, formData]);
   };
 
   return (
-    <div>
-      <Navbar siteProperties={siteProperties} />
-      <div className="container">
-        <div className="inner_container">
-          <AddTask addTaskHandler={addTaskHandler} />
-          <Tasks tasksData={tasks} />
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Tasks tasksData={tasks} />} />
+        <Route path="/add-task" element={<AddTask addTaskHandler={addTaskHandler} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
